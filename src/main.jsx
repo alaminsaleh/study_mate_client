@@ -94,11 +94,12 @@ import MyConnections from './components/MyConnections/MyConnections.jsx';
 import PartnerDetails from './components/PartnerDetails/PartnerDetails.jsx';
 import PrivateRoute from './contexts/PrivateRoute.jsx';
 import Login from './components/Login/Login.jsx';
-import CreateProfile from './components/CreateProfile/CreateProfile.jsx';
-import CreatePartner from './components/CreatePartner/CreatePartner.jsx';
+// import CreateProfile from './components/CreateProfile/CreateProfile.jsx';
+// import CreatePartner from './components/CreatePartner/CreatePartner.jsx';
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CreatePartner from './components/CreatePartner/CreatePartner.jsx';
 
 const router = createBrowserRouter([
   {
@@ -114,10 +115,10 @@ const router = createBrowserRouter([
       { path: 'register', Component: Register },
       { path: 'login', Component: Login },
 
-      {
-        path: "createProfile",
-        element: <PrivateRoute><CreateProfile /></PrivateRoute>
-      },
+      // {
+      //   path: "createProfile",
+      //   element: <PrivateRoute><CreateProfile /></PrivateRoute>
+      // },
 
       {
         path: "myConnection",

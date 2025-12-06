@@ -48,7 +48,7 @@ const MyConnections = () => {
             await axios.delete(`http://localhost:3000/requests/${request._id}`);
 
 
-            // ✅ Decrease partnerCount
+            // Decrease partnerCount
             await axios.put(`http://localhost:3000/partners/${request.partnerId}/decrement`);
 
 

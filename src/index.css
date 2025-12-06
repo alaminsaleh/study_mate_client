@@ -1,0 +1,36 @@
+/* NAVBAR CONTAINER */
+.navbar-links {
+    display: flex;
+    /* flex-direction: column; */
+    gap: 20px;
+    align-items: center;
+}
+
+/* LIST RESET */
+.navbar-links li {
+    list-style: none;
+}
+
+/* DEFAULT LINK STYLE */
+.navbar-links a {
+    text-decoration: none;
+    color: #444;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.navbar-links a:hover {
+    background: #E7FE29;
+    color: #000;
+}
+
+/* ACTIVE NAVLINK */
+.navbar-links a.active {
+    background: #000;
+    color: #E7FE29;
+    font-weight: 600;
+}

@@ -105,7 +105,7 @@ const PartnerDetails = () => {
 
 
                             <p className="text-lg mt-1 text-gray-600">
-                                📘 <span className="font-semibold">{subject}</span> Tutor
+                                📘 <span className="font-semibold">{subject}</span>
                             </p>
 
 

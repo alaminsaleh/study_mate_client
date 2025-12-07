@@ -100,6 +100,8 @@ import Login from './components/Login/Login.jsx';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreatePartner from './components/CreatePartner/CreatePartner.jsx';
+import Profile from './components/pages/Profile/Profile .jsx';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -147,9 +149,19 @@ const router = createBrowserRouter([
             <CreatePartner />
           </PrivateRoute>
         )
+      },
+      {
+        path: 'profile',
+        element: <PrivateRoute>
+          <Profile />
+        </PrivateRoute>
       }
     ]
   },
+  {
+    path: '*',
+    Component: NotFoundPage
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

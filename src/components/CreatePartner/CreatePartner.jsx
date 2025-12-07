@@ -1,32 +1,35 @@
 // import axios from 'axios';
-import React from 'react';
+import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 // import useAuth from '../../hooks/useAuth';
 import useAxios from '../../hooks/useAxios';
+import { AuthContext } from '../../contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 
 const CreatePartner = () => {
+    const { user } = useContext(AuthContext)
     // const { user } = useAuth();
     const axiosInstance = useAxios()
     const handleCreatePartner = (event) => {
         event.preventDefault();
         const name = event.target.name.value;
-        const profileImage = event.target.profileImage.value;
+        const profileimage = event.target.profileimage.value;
         const subject = event.target.subject.value;
         const studyMode = event.target.studyMode.value;
-        const availability = event.target.availability.value;
+        const availabilityTime = event.target.availabilityTime.value;
         const location = event.target.location.value;
-        const experience = event.target.experience.value;
+        const experienceLevel = event.target.experienceLevel.value;
         const rating = event.target.rating.value;
         const email = event.target.email.value;
         const newPartner = {
             name
-            , profileImage
+            , profileimage
             , subject
             , studyMode
-            , availability
+            , availabilityTime
             , location
-            , experience
+            , experienceLevel
             , rating
             , email
         }
@@ -46,13 +49,26 @@ const CreatePartner = () => {
 
     }
 
+    const handleRatingChange = (e) => {
+        let value = parseFloat(e.target.value);
+        if (value < 0) {
+            value = 0;
+            toast.error("Minimum rating is 0");
+        }
+        if (value > 5) {
+            value = 5;
+            toast.error("Maximum rating is 5");
+        }
 
+        e.target.value = value;
+    };
 
 
 
 
     return (
         <div className='py-5'>
+
             <form onSubmit={handleCreatePartner}>
                 <fieldset className="fieldset p-6 border rounded-xl bg-base-100 shadow-md w-full max-w-md mx-auto">
 
@@ -80,7 +96,7 @@ const CreatePartner = () => {
                     </label>
                     <input
                         type="text"
-                        name="profileImage"
+                        name="profileimage"
                         placeholder="Image URL"
                         className="input input-bordered w-full mb-4"
                     />
@@ -108,13 +124,13 @@ const CreatePartner = () => {
                     </select>
 
 
-                    {/* AVAILABILITY TIME */}
+                    {/* availabilityTime TIME */}
                     <label className="label">
-                        <span className="label-text font-medium">Availability Time</span>
+                        <span className="label-text font-medium">Available Time</span>
                     </label>
                     <input
                         type="text"
-                        name="availability"
+                        name="availabilityTime"
                         placeholder="e.g., Evening 6–9 PM"
                         className="input input-bordered w-full mb-4"
                     />
@@ -132,11 +148,11 @@ const CreatePartner = () => {
                     />
 
 
-                    {/* EXPERIENCE LEVEL */}
+                    {/* experienceLevel LEVEL */}
                     <label className="label">
                         <span className="label-text font-medium">Experience Level</span>
                     </label>
-                    <select name="experience" className="select select-bordered w-full mb-4">
+                    <select name="experienceLevel" className="select select-bordered w-full mb-4">
                         <option>Beginner</option>
                         <option>Intermediate</option>
                         <option>Expert</option>
@@ -147,7 +163,7 @@ const CreatePartner = () => {
                     <label className="label">
                         <span className="label-text font-medium">Rating</span>
                     </label>
-                    <input
+                    {/* <input
                         type="number"
                         name="rating"
                         min="0"
@@ -155,7 +171,18 @@ const CreatePartner = () => {
                         step="0.1"
                         placeholder="Numeric rating"
                         className="input input-bordered w-full mb-4"
+                    /> */}
+                    <input
+                        type="number"
+                        name="rating"
+                        min="0"
+                        max="5"
+                        step="0.1"
+                        placeholder="Numeric rating"
+                        onChange={handleRatingChange}
+                        className="input input-bordered w-full mb-4"
                     />
+
 
 
                     {/* PARTNER COUNT */}
@@ -176,6 +203,8 @@ const CreatePartner = () => {
                         <span className="label-text font-medium">Email</span>
                     </label>
                     <input
+                        value={user.email}
+                        readOnly
                         type="email"
                         name="email"
                         className="input input-bordered w-full mb-4"

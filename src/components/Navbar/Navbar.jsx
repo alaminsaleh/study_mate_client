@@ -1,11 +1,25 @@
-import React, { use } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../../contexts/AuthContext';
 import Loading from '../Loading/Loading';
 import Swal from 'sweetalert2';
 
 const Navbar = () => {
-    const { _id, user, signOutUser } = use(AuthContext);
+    const { _id, user, signOutUser } = useContext(AuthContext);
+
+    const [theme, setThem] = useState(localStorage.getItem("theme") || "light")
+
+    useEffect(() => {
+        const html = document.querySelector('html')
+        html.setAttribute('data-theme', theme)
+        localStorage.setItem("theme", theme)
+    }, [theme])
+
+
+    const handleTheme = (checked) => {
+        setThem(checked ? "dark" : "light")
+    }
+
 
     const handleSignOut = () => {
         signOutUser()
@@ -36,6 +50,8 @@ const Navbar = () => {
             )}
         </ul>
     );
+
+
 
 
     return (
@@ -89,8 +105,18 @@ const Navbar = () => {
                 </ul>
             </div>
 
-            {/* RIGHT */}
-            <div className="navbar-end">
+            {/* RIGHT
+            <div className="navbar-end gap-5">
+                <div>
+                    <input
+                        onChange={(e) => handleTheme(e.target.checked)}
+                        type='checkbox'
+                        defaultChecked={localStorage.getItem('theme') === "dark"}
+                        className='toggle'
+                    />
+
+
+                </div>
                 {user ? (
                     <button onClick={handleSignOut} className="btn">Sign Out</button>
                 ) : (
@@ -99,9 +125,64 @@ const Navbar = () => {
                         <Link to="/register">Register</Link>
                     </div>
                 )}
+            </div> */}
+
+
+
+            {/* RIGHT SIDE */}
+            <div className="navbar-end gap-5">
+
+                {/* Theme Toggle */}
+                <input
+                    onChange={(e) => handleTheme(e.target.checked)}
+                    type="checkbox"
+                    defaultChecked={localStorage.getItem("theme") === "dark"}
+                    className="toggle"
+                />
+
+                {/* If user is logged in */}
+                {user ? (
+                    <div className="dropdown dropdown-end">
+                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img
+                                    src={user?.photoURL || "https://i.ibb.co/4pDNDk1/blank-profile.png"}
+                                    alt="User"
+                                />
+                            </div>
+                        </label>
+
+                        {/* DROPDOWN MENU */}
+                        <ul
+                            tabIndex={0}
+                            className="menu menu-sm dropdown-content mt-3 z-[100] p-2 shadow bg-base-100 rounded-box w-52"
+                        >
+                            <li>
+                                <Link to="/profile" className="justify-between">
+                                    Profile
+                                </Link>
+                            </li>
+
+                            <li>
+                                <button onClick={handleSignOut}>Logout</button>
+                            </li>
+                        </ul>
+                    </div>
+                ) : (
+                    // If NO USER → Show Login & Register buttons
+                    <div className="flex gap-3">
+                        <Link to="/login">Login</Link>
+                        <Link to="/register">Register</Link>
+                    </div>
+                )}
             </div>
+
         </div>
     );
 };
 
 export default Navbar;
+
+
+
+

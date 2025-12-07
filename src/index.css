@@ -13,6 +13,12 @@ themes:light --default, dark --prefersdark;
 }
 @custom-variant dark () */
 
+@import "tailwindcss";
+@plugin "daisyui";
+
+@plugin "daisyui" {
+    themes: light --default, caramellatte;
+}
 
 /* LIST RESET */
 .navbar-links li {

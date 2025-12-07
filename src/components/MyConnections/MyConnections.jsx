@@ -1,23 +1,18 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import { useAuth } from "../AuthProvider";
 import MyConnectionTable from "./MyConnectionTable";
 import useAuth from "../../hooks/useAuth";
-
 
 const MyConnections = () => {
     const { user } = useAuth();
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
 
-
     useEffect(() => {
         if (!user?.email) return;
 
-
         const url = `http://localhost:3000/requests?email=${user.email}`;
         console.log("FETCHING:", url);
-
 
         axios
             .get(url)
@@ -33,24 +28,16 @@ const MyConnections = () => {
     if (loading) return <p>Loading...</p>;
 
 
-
-
-    // ❌NEW❌
-
-
     const handleDelete = async (request) => {
         const confirmDelete = window.confirm(`Delete ${request.partnerName}?`);
         if (!confirmDelete) return;
-
 
         try {
             // Delete request
             await axios.delete(`http://localhost:3000/requests/${request._id}`);
 
-
             // Decrease partnerCount
             await axios.put(`http://localhost:3000/partners/${request.partnerId}/decrement`);
-
 
             // Update local state
             setRequests(prev => prev.filter(r => r._id !== request._id));
@@ -59,9 +46,6 @@ const MyConnections = () => {
             alert("Failed to delete.");
         }
     };
-
-
-
 
     const handleUpdate = async (request) => {
         const updatedSubject = prompt("Edit Subject:", request.partnerSubject);
@@ -91,17 +75,16 @@ const MyConnections = () => {
         }
     };
 
-
-
-
-
-
     return (
         <div className="min-h-screen p-6">
-            <h1 className="text-3xl font-bold text-center mb-6">My Connections</h1>
-            <h1 className="text-3xl font-bold text-center mb-6">
-                My Connections ({requests.length})
+            <h1 className="text-xl font-bold mb-6 flex justify-end items-center gap-3">
+                <span className="text-gray-800">My Connections</span>
+                <span className="bg-red-300 text-green-800 font-semibold px-3 py-1 rounded-full shadow-md animate-pulse">
+                    {requests.length}
+                </span>
             </h1>
+
+
 
 
             {requests.length > 0 ? (

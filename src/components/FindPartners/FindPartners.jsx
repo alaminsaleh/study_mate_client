@@ -4,31 +4,36 @@ import PartnerCard from "../Partner/PartnerCard";
 
 const FindPartners = () => {
     const partners = useLoaderData() || [];
-
     const [searchTerm, setSearchTerm] = useState("");
     const [sortOrder, setSortOrder] = useState(""); // "asc" or "desc"
+    // const [loading, setLoading] = useState(true);
 
     // Filter partners by subject
     const filteredPartners = partners.filter((partner) =>
         partner.subject.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    // Sort partners by experience level
     const sortedPartners = [...filteredPartners].sort((a, b) => {
-        if (!sortOrder) return 0; // no sorting
-        const expA = a.experienceLevel.toLowerCase();
-        const expB = b.experienceLevel.toLowerCase();
+        if (!sortOrder) return 0;
+
+        const ratingA = parseFloat(a.rating) || 0;
+        const ratingB = parseFloat(b.rating) || 0;
 
         if (sortOrder === "asc") {
-            return expA.localeCompare(expB);
+            return ratingA - ratingB; // Low → High
         } else {
-            return expB.localeCompare(expA);
+            return ratingB - ratingA; // High → Low
         }
     });
 
+    // if (loading) return <span className="loading loading-bars loading-xl"></span>;
+    //setLoading(false);
+
+
     return (
-        <div className="w-full px-4 py-6">
-            <div className="mx-auto max-w-7xl">
+        <div className="w-full px-4 py-6 ">
+
+            <div className="mx-auto max-w-7xl ">
                 {/* Search & Sort Controls */}
                 <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
                     <input
@@ -49,25 +54,32 @@ const FindPartners = () => {
                     </select>
                 </div>
 
-                {/* Partners Grid */}
-                <div
-                    className="
-                        grid
-                        grid-cols-1
-                        sm:grid-cols-2
-                        md:grid-cols-3
-                        lg:grid-cols-4
-                        gap-6
-                        place-items-center
-                    "
-                >
-                    {sortedPartners.map((partner) => (
-                        <PartnerCard key={partner._id} partner={partner} />
-                    ))}
-                </div>
+                {sortedPartners.length === 0 ? (
+                    <p className="min-h-screen flex justify-center text-center italic text-gray-400 mt-6">THERE ARE NO SUBJECT</p>
+                ) : (
+                    <div
+                        className="
+            grid
+            grid-cols-1
+            sm:grid-cols-2
+            md:grid-cols-3
+            lg:grid-cols-4
+            gap-6
+            place-items-center
+        "
+                    >
+                        {sortedPartners.map((partner) => (
+                            <PartnerCard key={partner._id} partner={partner} />
+                        ))}
+                    </div>
+                )}
+
             </div>
         </div>
     );
 };
 
 export default FindPartners;
+
+
+

@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 const MyConnections = () => {
     const { user } = useAuth();
     const [requests, setRequests] = useState([]);
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         if (!user?.email) return;
@@ -21,11 +21,11 @@ const MyConnections = () => {
                 setRequests(res.data);
             })
             .catch((err) => console.error(err))
-            .finally(() => setLoading(false));
+        // .finally(() => setLoading(false));
     }, [user?.email]);
 
 
-    if (loading) return <p>Loading...</p>;
+    // if (loading) return <p>Wahh Wahh...</p>;
 
 
     const handleDelete = async (request) => {
@@ -51,13 +51,11 @@ const MyConnections = () => {
         const updatedSubject = prompt("Edit Subject:", request.partnerSubject);
         if (updatedSubject === null) return;
 
-
         try {
             await axios.put(
                 `http://localhost:3000/requests/${request._id}`,
                 { partnerSubject: updatedSubject }
             );
-
 
             setRequests(prev =>
                 prev.map(r =>
@@ -66,7 +64,6 @@ const MyConnections = () => {
                         : r
                 )
             );
-
 
             alert("Updated successfully!");
         } catch (err) {
@@ -78,14 +75,11 @@ const MyConnections = () => {
     return (
         <div className="min-h-screen p-6">
             <h1 className="text-xl font-bold mb-6 flex justify-end items-center gap-3">
-                <span className="text-gray-800">My Connections</span>
+                <span >My Connections</span>
                 <span className="bg-red-300 text-green-800 font-semibold px-3 py-1 rounded-full shadow-md animate-pulse">
                     {requests.length}
                 </span>
             </h1>
-
-
-
 
             {requests.length > 0 ? (
                 <div className="space-y-4">

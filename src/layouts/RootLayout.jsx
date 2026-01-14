@@ -7,17 +7,22 @@ const RootLayout = () => {
     return (
         <div>
             <div className='max-w-7xl mx-auto'>
-                <Navbar></Navbar>
+                {/* Navbar must NOT be inside max-w container */}
+                <Navbar />
+
+                <div className="max-w-7xl mx-auto">
+                    <Outlet />
+                </div>
+
+
             </div>
-            <div className='max-w-7xl mx-auto'>
-                <Outlet></Outlet>
-            </div>
-            <div className='w-full'>
-                <Footer></Footer>
+            <div>
+                <Footer />
             </div>
         </div>
     );
 };
+
 
 export default RootLayout;
 

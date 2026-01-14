@@ -39,7 +39,7 @@ const CreatePartner = () => {
             .then(data => {
                 console.log(data.data);
                 Swal.fire({
-                    title: "Drag me!",
+                    title: "Wahh! Wahh! Successfully created a Profile",
                     icon: "success",
                     draggable: true
                 });
@@ -62,8 +62,6 @@ const CreatePartner = () => {
 
         e.target.value = value;
     };
-
-
 
 
     return (

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import footerLogo from '../../assets/studymateLogo.jpeg'
 
 const Footer = () => {
     return (
@@ -10,7 +11,7 @@ const Footer = () => {
                 <aside className="flex flex-col items-start">
                     <div className="flex items-center gap-3">
                         <img
-                            src="https://i.ibb.co/4pDNDk1/blank-profile.png"
+                            src={footerLogo}
                             alt="Logo"
                             className="w-12 h-12 rounded-full object-cover"
                         />

@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../../contexts/AuthContext';
 import Loading from '../Loading/Loading';
 import Swal from 'sweetalert2';
+import logo from '../../assets/studymateLogo.jpeg'
 
 const Navbar = () => {
     const { _id, user, signOutUser } = useContext(AuthContext);
@@ -52,10 +53,8 @@ const Navbar = () => {
     );
 
 
-
-
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-base-100 shadow-sm sticky top-0 z-50">
             {/* LEFT */}
             <div className="navbar-start">
 
@@ -81,53 +80,34 @@ const Navbar = () => {
                 </div>
 
                 {/* LOGO */}
+
+                <NavLink to='/' className='w-10 h-10 mr-3'>
+                    <img className='rounded-2xl border-2 border-black' title='StudyMate' src={logo} alt="" />
+                </NavLink>
                 <NavLink
                     to="/"
-                    className="logo text-3xl font-black tracking-tight flex items-center 
-                    transition-transform duration-300 hover:scale-105"
+                    className="hidden lg:flex logo text-3xl font-black tracking-tight flex items-center 
+                                    transition-transform duration-300 hover:scale-105"
                 >
                     <span className="bg-gradient-to-r from-[#2970fe] to-[#2937fe] 
-                    bg-clip-text text-transparent logo-font">S</span>
+                                    bg-clip-text text-transparent logo-font">S</span>
 
-                    <span className="text-black">tudy</span>
+                    <span className="text-purple-500">tudy</span>
 
                     <span className="bg-gradient-to-r from-[#2970fe] to-[#2937fe] 
-                    bg-clip-text text-transparent logo-font">M</span>
+                                    bg-clip-text text-transparent logo-font">M</span>
 
-                    <span className="text-black">ate</span>
+                    <span className="text-purple-500">ate</span>
                 </NavLink>
+
+
             </div>
 
-            {/* CENTER — DESKTOP NAV (HIDE ON SMALL, SHOW ON md+) */}
-            <div className="navbar-center hidden md:flex">
+            <div className="navbar-center  hidden md:flex">
                 <ul className="menu menu-horizontal px-1">
                     {links}
                 </ul>
             </div>
-
-            {/* RIGHT
-            <div className="navbar-end gap-5">
-                <div>
-                    <input
-                        onChange={(e) => handleTheme(e.target.checked)}
-                        type='checkbox'
-                        defaultChecked={localStorage.getItem('theme') === "dark"}
-                        className='toggle'
-                    />
-
-
-                </div>
-                {user ? (
-                    <button onClick={handleSignOut} className="btn">Sign Out</button>
-                ) : (
-                    <div className="flex gap-3">
-                        <Link to="/login">Login</Link>
-                        <Link to="/register">Register</Link>
-                    </div>
-                )}
-            </div> */}
-
-
 
             {/* RIGHT SIDE */}
             <div className="navbar-end gap-5">
@@ -146,7 +126,7 @@ const Navbar = () => {
                         <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                                 <img
-                                    src={user?.photoURL || "https://i.ibb.co/4pDNDk1/blank-profile.png"}
+                                    src={user?.photoURL || user.email}
                                     alt="User"
                                 />
                             </div>

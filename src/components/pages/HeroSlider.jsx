@@ -20,7 +20,7 @@ const HeroSlider = () => {
                 pagination={{ clickable: true }}
                 autoplay={{ delay: 3000, disableOnInteraction: false }}
                 loop
-                className="w-full h-full"
+                className="w-full h-full rounded-2xl"
             >
                 <SwiperSlide >
                     <div
@@ -32,10 +32,10 @@ const HeroSlider = () => {
                         <div className="absolute inset-0 bg-black/50"></div>
                         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
                             <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">
-                                Exchange Your Skills, Expand Your World 🌍
+                                Find the Right Study Partner!
                             </h1>
                             <p className="text-lg md:text-2xl max-w-2xl mx-auto drop-shadow-md">
-                                Learn from locals — teach what you know.
+                                Connect with students who match your goals and subjects.
                             </p>
                         </div>
                     </div>
@@ -52,10 +52,10 @@ const HeroSlider = () => {
                         <div className="absolute inset-0 bg-black/50"></div>
                         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
                             <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">
-                                Master Music & Art 🎸🎨
+                                Learn Together, Grow Faster
                             </h1>
                             <p className="text-lg md:text-2xl max-w-2xl mx-auto drop-shadow-md">
-                                Join creative sessions with talented people around you.
+                                Collaborate, share knowledge, and achieve better results.
                             </p>
                         </div>
                     </div>
@@ -73,10 +73,10 @@ const HeroSlider = () => {
                         <div className="absolute inset-0 bg-black/50"></div>
                         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
                             <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">
-                                Boost Your Tech Skills 💻
+                                Verified Academic Profiles
                             </h1>
                             <p className="text-lg md:text-2xl max-w-2xl mx-auto drop-shadow-md">
-                                Get coding help, design mentorship, and digital workshops.
+                                Study with trusted partners based on experience and subjects.
                             </p>
                         </div>
                     </div>
@@ -93,10 +93,10 @@ const HeroSlider = () => {
                         <div className="absolute inset-0 bg-black/50"></div>
                         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
                             <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">
-                                Find Balance with Yoga 🧘‍♀️
+                                Build Your Learning Network
                             </h1>
                             <p className="text-lg md:text-2xl max-w-2xl mx-auto drop-shadow-md">
-                                Join wellness & fitness sessions guided by local trainers.
+                                Expand your academic circle across universities and subjects.
                             </p>
                         </div>
                     </div>
@@ -113,10 +113,10 @@ const HeroSlider = () => {
                         <div className="absolute inset-0 bg-black/50"></div>
                         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4">
                             <h1 className="text-3xl md:text-5xl font-bold mb-4 drop-shadow-lg">
-                                Speak with Confidence 🗣️
+                                Start Your Study Journey Today
                             </h1>
                             <p className="text-lg md:text-2xl max-w-2xl mx-auto drop-shadow-md">
-                                Practice languages and improve communication skills.
+                                Create a profile and connect with your ideal study partner.
                             </p>
                         </div>
                     </div>

@@ -16,8 +16,8 @@ const PartnerCard = ({ partner }) => {
 
 
     return (
-        <div className="card w-72 bg-base-100 shadow-xl rounded-2xl border border-gray-200 hover:shadow-2xl transition duration-300">
 
+        <div className="card w-72 bg-base-100 shadow-xl rounded-2xl border border-gray-200 hover:shadow-2xl transition duration-300">
 
             {/* Profile Image */}
             <figure className="px-6 pt-6">
@@ -67,6 +67,7 @@ const PartnerCard = ({ partner }) => {
 
 
             </div>
+
         </div>
 
 
@@ -75,5 +76,6 @@ const PartnerCard = ({ partner }) => {
 
 
 export default PartnerCard;
+
 
 

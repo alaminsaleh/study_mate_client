@@ -34,7 +34,6 @@ const MyConnectionTable = ({ request, handleDelete, handleUpdate }) => {
                 </div>
             </div>
 
-
             {/* Subject + Experience */}
             <div className="flex flex-col text-xl flex-1 min-w-[200px] text-gray-700">
                 <span className="font-medium">{partnerSubject}</span>
@@ -43,10 +42,6 @@ const MyConnectionTable = ({ request, handleDelete, handleUpdate }) => {
                     {new Date(date).toLocaleDateString()} <span>(Connected Date)</span>
                 </div>
             </div>
-
-
-
-
 
             {/* Action Buttons */}
             <div className="flex gap-2 flex-shrink-0">
@@ -69,3 +64,6 @@ const MyConnectionTable = ({ request, handleDelete, handleUpdate }) => {
 
 
 export default MyConnectionTable;
+
+
+
